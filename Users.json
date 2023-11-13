@@ -1,0 +1,25 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "username": "thenshi",
+      "email": "zfshacker@gmail.com",
+      "password": "n123",
+      "cppassword": ""
+    },
+    {
+      "username": "thenshi",
+      "email": "thenshi@gmail.com",
+      "password": "admin123",
+      "cppassword": "admin123",
+      "id": 15
+    },
+    {
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "cppassword": "admin123",
+      "id": 16
+    }
+  ]
+}
