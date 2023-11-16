@@ -6,7 +6,7 @@
 }
 .navbar-collapse {
     overflow-x: hidden;
-} */
+}
 .navbar-toggler {
     border: none;
 }
@@ -16,6 +16,7 @@
 .header-top{
     overflow-x: hidden;
 }
+
 /* Header */
 .img-logo-1{
     height: 30px;
@@ -38,12 +39,15 @@
     width: 200;
     height: 40px;
 }
+.logout-cursor{
+    cursor: pointer;
+}
 
 /* Navbar */
 .header-navbar{
     border-top: 2px solid #e5e5e5;
     border-bottom: 2px solid #e5e5e5;
-    padding: 20px 0px 20px 0px;
+    padding: 15px 0px 15px 0px;
     background-color: #f0f0f0;
 }
 .font-home-h4{
@@ -61,4 +65,7 @@
 .nav-header .li-header {
     padding: 0 10px;
     list-style-type: none;
+}
+.nav-item, .space-font{
+    white-space: nowrap;
 }

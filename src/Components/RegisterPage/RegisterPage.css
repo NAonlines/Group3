@@ -1,0 +1,27 @@
+
+
+  .form-registerpage:focus + .form-label{
+    color: #026db1 ;
+  }
+  .form-registerpagel{
+    position: relative;
+  }
+  .label-registerpage{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 11px;
+    user-select: none;
+    color: #999;
+    pointer-events: none;
+    transition: 0.25s ease;
+  }
+  .form-registerpage:not(:placeholder-shown) + .label-registerpage,
+  .form-registerpage:focus +.label-registerpage{
+    color: #026db1 ;
+    top: 0;
+    padding: 0 0px;
+    background-color: #ffffff;
+    font-size: 15px;
+  }
+  

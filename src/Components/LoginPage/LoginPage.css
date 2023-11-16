@@ -1,5 +1,4 @@
 /* login */
-
 .login-page-overlay {
     position: fixed;
     top: 0;
@@ -13,14 +12,13 @@
     z-index: 1000;
 }
 
-.card {
+.Login-card {
     border: none;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    background: white;
 }
 
-.card-header {
+.Login-header {
     background-color: #333;
     color: white;
     border-top-left-radius: 10px;
@@ -51,4 +49,26 @@
 .form-text {
     text-align: center;
     color: #888;
+}
+a{
+    text-decoration: none;
+}
+.google-icon{
+    width: 35px;
+    height: 35px;
+}
+.imgbanner-login{
+    width: 250px
+}
+@media only screen and (max-width: 768px){
+     .box-area{
+        margin: 0 10px;
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 10px;
+     }
 }

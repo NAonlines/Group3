@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../LoginPage/LoginPage.css'
+import googleicon from '../Img/Google.png'
+import Loginlogo from '../Img/Login5.png'
 const LoginPage = ({ onClose, onLoginSuccess }) => {
     const loginContainerRef = useRef();
     const [formData, setFormData] = useState({
@@ -58,65 +60,70 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
             })
             .catch(err => { console.log("Axios error:", err); })
     };
-
+    const handleSignupClick = () => {
+        window.location.reload()
+    }
     const handleCancelClick = () => {
         onClose();
     };
 
     return (
-        <div className="container mt-5">
-            <div ref={loginContainerRef} className="row justify-content-center login-page-overlay">
-                <div className="col-md-6 login-container">
-                    <div className="card">
-                        <div className="card-header">
-                            <h3 className="text-center text-success fw-bold">Login</h3>
+        <div class="row login-page-overlay">
+            <div ref={loginContainerRef} class="row border rounded-5 p-3 bg-white shadow box-area col-md-8 login-container">
+                <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+                    <div class="featured-image mb-3">
+                        <img src={Loginlogo} className="img-fluid" />                    </div>
+                </div>
+                <div class="col-md-6 right-box">
+                    <div class="row align-items-center">
+                        <div class="header-text mb-4">
+                            <h2>Hello,Again!!</h2>
+                            <p>We are happy to have you back.</p>
                         </div>
-                        {
-                            valid ? <></> :
-                                <span className="text-danger">
-                                    {/* Please enter username and password */}
-                                </span>
-                        }
-                        <div className="card-body form-login">
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="username" className="form-label">
-                                        Username
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="username"
-                                        placeholder="Enter your username"
-                                        onChange={(event) => setFormData({ ...formData, username: event.target.value })}
-                                    />
-                                    {errors.username && <div className="text-danger">{errors.username}</div>}
+                        <form onSubmit={handleSubmit}>
+                            <div class="row input-group mb-3">
+                                <small>{errors.username && <div className="text-danger">{errors.username}</div>}</small>
 
+                                <input type="text" class="form-control form-control-lg bg-light fs-6" placeholder="Username"
+                                    onChange={(event) => setFormData({ ...formData, username: event.target.value })} />
+
+                            </div>
+                            <div class="row input-group mb-1">
+                                <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="Enter your password"
+                                    aria-describedby="passwordHelpBlock"
+                                    onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
+                                <small>{errors.password && <div className="text-danger">{errors.password}</div>}</small>
+                            </div>
+                            <div class="input-group mb-5 d-flex justify-content-between">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="formCheck" />
+                                    <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">
-                                        Password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="inputPassword5"
-                                        placeholder="Enter your password"
-                                        aria-describedby="passwordHelpBlock"
-                                        onChange={(event) => setFormData({ ...formData, password: event.target.value })}
-                                    />
-                                    {errors.password && <div className="text-danger">{errors.password}</div>}
+                                <div class="forgot">
+                                    <small><a href="/signup">Forgot Password?</a></small>
                                 </div>
-                                <div className="text-center">
-                                    <button type="submit" className="btn btn-primary">
-                                        Login
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-lg btn-outline-success w-50 fs-6">Login</button>
+                                <button type="button" onClick={handleCancelClick}
+                                    className="btn btn-outline-danger w-50 btn-lg">
+                                    Cancel
+                                </button>
+                            </div>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-lg btn-light w-100">
+                                    <a href="/signup"><img className="google-icon" src={googleicon} /></a>
+                                    <small>Sign In with Google</small>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <small>Don't have account? <Link to="/signup">
+                                    <button className="btn btn-outline-primary btn-ms" onClick={handleSignupClick} >
+                                        Sign Up
                                     </button>
-                                    <button type="button" onClick={handleCancelClick} className="btn btn-secondary">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                                </Link></small>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

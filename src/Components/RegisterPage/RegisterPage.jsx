@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../RegisterPage/RegisterPage.css'
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         username: '',
+        birthday: '',
+        phonenumber: '',
         email: '',
         password: '',
         cppassword: '',
@@ -22,13 +24,23 @@ const RegisterPage = () => {
             isValid = false;
             validationErrors.username = "Username is required";
         }
-
+        if (!formData.birthday) {
+            isValid = false;
+            validationErrors.birthday = "Birthdays is required";
+        }
         if (!formData.email) {
             isValid = false;
             validationErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             isValid = false;
             validationErrors.email = "Email is not valid";
+        }
+        if (!formData.phonenumber) {
+            isValid = false;
+            validationErrors.phonenumber = "Phone number is required";
+        } else if (!/(\d{3})(\d{3})(\d{4})/.test(formData.phonenumber)) {
+            isValid = false;
+            validationErrors.phonenumber = "Phone number not valid"
         }
 
         if (!formData.password) {
@@ -60,81 +72,137 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="container mt-5 mb-5">
-            <div className="row justify-content-center">
-                <div className="col-md-6">
-                    <div className="card">
-                        <div className="card-header">
-                            <h3 className="text-center text-primary fw-bold">Sign Up</h3>
-                        </div>
-                        {
-                            valid ? <></> :
-                                <span className="text-danger">
-                                    Please enter full
-                                </span>
-                        }
-                        <div className="card-body">
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="username" className="form-label">
-                                        Username
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="username"
-                                        name="username"
-                                        onChange={(event) => setFormData({ ...formData, username: event.target.value })}
-                                    />
-                                    {errors.username && <div className="text-danger">{errors.username}</div>}
+        <div className="intro">
+            <div className="mask d-flex align-items-center h-100 gradient-custom">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-12 col-lg-9 col-xl-7">
+                            <div div className="card">
+
+                                <div className="card-body p-4 p-md-5">
+                                    <h3 className="text-center text-primary fw-bold mb-5">Sign Up</h3>
+                                    <form className="mt-5" onSubmit={handleSubmit}>
+
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+
+                                                <div className="form-outline form-registerpagel">
+                                                    <input type="text"
+                                                        id="Username"
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registerpage"
+                                                        onChange={(event) => setFormData({ ...formData, username: event.target.value })}
+                                                    />
+                                                    <label className="form-label label-registerpage" for="Username">Username</label>
+
+                                                </div>
+
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline form-registerpagel">
+                                                    <input
+                                                        type="date"
+                                                        className="form-control shadow-none form-registerpage"
+                                                        id="birthdayDate"
+                                                        placeholder=""
+                                                        onChange={(event) => setFormData({ ...formData, birthday: event.target.value })}
+                                                    />
+                                                    <label htmlFor="birthdayDate" className="form-label label-registerpage" >Birthday</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+
+                                                <div className="form-outline form-registerpagel">
+                                                    <input type="email"
+                                                        id="emailAddress"
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registerpage"
+                                                        onChange={(event) => setFormData({ ...formData, email: event.target.value })}
+                                                    />
+                                                    <label className="form-label label-registerpage" for="emailAddress">Email</label>
+
+                                                </div>
+
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+
+                                                <div className="form-outline form-registerpagel">
+                                                    <input type="text"
+                                                        id="phoneNumber"
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registerpage"
+                                                        onChange={(event) => setFormData({ ...formData, phonenumber: event.target.value })}
+                                                    />
+                                                    <label className="form-label label-registerpage" for="phoneNumber">Phone Number</label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline form-registerpagel">
+                                                    <input
+                                                        type="password"
+                                                        id="password"
+                                                        value={formData.password}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registerpage"
+                                                        onChange={(event) => setFormData({ ...formData, password: event.target.value })}
+                                                    />
+                                                    <label className="form-label label-registerpage" for="password">Password</label>
+
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline form-registerpagel">
+                                                    <input
+                                                        type="text"
+                                                        id="c   onfirmPassword"
+                                                        value={formData.cppassword}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registerpage"
+                                                        onChange={(event) => setFormData({ ...formData, cppassword: event.target.value })}
+                                                    />
+                                                    <label className="form-label label-registerpage" for="c onfirmPassword">Confirm Password</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-12">
+                                                {
+                                                    valid ? <></> :
+                                                        <small className="text-danger mb-5">
+                                                            Please enter complete information
+                                                        </small>
+
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <small>{errors.username && <div className="text-danger">{errors.username}</div>}</small>
+                                                <small>{errors.birthday && <div className="text-danger">{errors.birthday}</div>}</small>
+                                                <small>{errors.email && <div className="text-danger">{errors.email}</div>}</small>
+                                                <small>{errors.phonenumber && <div className="text-danger">{errors.phonenumber}</div>}</small>
+                                                <small>{errors.password && <div className="text-danger">{errors.password}</div>}</small>
+                                                <small>{errors.cppassword && <div className="text-danger">{errors.cppassword}</div>}</small>
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <div className="mt-4">
+                                                    <input className="btn btn-outline-primary btn-lg" type="submit" value="Sign Up" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        className="form-control"
-                                        id="email"
-                                        name="email"
-                                        onChange={(event) => setFormData({ ...formData, email: event.target.value })}
-                                    />
-                                    {errors.email && <div className="text-danger">{errors.email}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">
-                                        Password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={(event) => setFormData({ ...formData, password: event.target.value })}
-                                    />
-                                    {errors.password && <div className="text-danger">{errors.password}</div>}
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="cppassword" className="form-label">
-                                        Confirm Password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        className="form-control"
-                                        id="cppassword"
-                                        name="cppassword"
-                                        value={formData.cppassword}
-                                        onChange={(event) => setFormData({ ...formData, cppassword: event.target.value })}
-                                    />
-                                    {errors.cppassword && <div className="text-danger">{errors.cppassword}</div>}
-                                </div>
-                                <div className="text-center">
-                                    <button type="submit" className="btn btn-primary">
-                                        Register
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ function Footer() {
                         </div>
                     </div>
                     <div className="col-lg-4 footer-qc">
-                        <div class="container box-form ">
+                        <div class="container box-form d-none d-md-block">
                             <h4 className="footer-title">Quick Contract</h4>
                             <div className="footer-qc-form">
                                 <div class="input-group mb-3 ">
