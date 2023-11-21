@@ -60,20 +60,20 @@ const RegisterPage = () => {
         setValid(isValid);
 
         if (Object.keys(validationErrors).length === 0) {
-            console.log("Sending axios request...");
-            axios.post('http://localhost:8000/Users/', formData)
+            console.log("Sending request...");
+            axios.post(`http://localhost:8000/Users/`, formData)
                 .then(result => {
                     console.log("Server response:", result);
                     alert("Registered Successfully");
                     navigate("/");
                 })
-                .catch(err => { console.log("Axios error:", err); })
+                .catch(err => { console.log("Server error:", err); })
         }
     };
 
     return (
         <div className="intro">
-            <div className="mask d-flex align-items-center h-100 gradient-custom">
+            <div className="mask d-flex align-items-center h-100">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9 col-xl-7">
@@ -85,45 +85,49 @@ const RegisterPage = () => {
 
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registerpagel">
                                                     <input type="text"
                                                         id="Username"
+                                                        value={formData.username}
                                                         placeholder=""
                                                         className="form-control  shadow-none form-registerpage"
                                                         onChange={(event) => setFormData({ ...formData, username: event.target.value })}
                                                     />
                                                     <label className="form-label label-registerpage" for="Username">Username</label>
-
                                                 </div>
+                                                <small>{errors.username && <div className="text-danger">{errors.username}</div>}</small>
 
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline form-registerpagel">
                                                     <input
                                                         type="date"
-                                                        className="form-control shadow-none form-registerpage"
                                                         id="birthdayDate"
+                                                        value={formData.birthday}
                                                         placeholder=""
+                                                        className="form-control shadow-none form-registerpage"
                                                         onChange={(event) => setFormData({ ...formData, birthday: event.target.value })}
                                                     />
-                                                    <label htmlFor="birthdayDate" className="form-label label-registerpage" >Birthday</label>
+                                                    <label className="form-label label-registerpage" for="birthdayDate">Birthday</label>
+
                                                 </div>
+                                                <small>{errors.birthday && <div className="text-danger">{errors.birthday}</div>}</small>
+
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registerpagel">
                                                     <input type="email"
                                                         id="emailAddress"
+                                                        value={formData.email}
                                                         placeholder=""
                                                         className="form-control  shadow-none form-registerpage"
                                                         onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                                                     />
                                                     <label className="form-label label-registerpage" for="emailAddress">Email</label>
-
                                                 </div>
+                                                <small>{errors.email && <div className="text-danger">{errors.email}</div>}</small>
 
                                             </div>
                                             <div className="col-md-6 mb-4">
@@ -131,13 +135,14 @@ const RegisterPage = () => {
                                                 <div className="form-outline form-registerpagel">
                                                     <input type="text"
                                                         id="phoneNumber"
+                                                        value={formData.phonenumber}
                                                         placeholder=""
                                                         className="form-control  shadow-none form-registerpage"
                                                         onChange={(event) => setFormData({ ...formData, phonenumber: event.target.value })}
                                                     />
                                                     <label className="form-label label-registerpage" for="phoneNumber">Phone Number</label>
                                                 </div>
-
+                                                <small>{errors.phonenumber && <div className="text-danger">{errors.phonenumber}</div>}</small>
                                             </div>
 
                                         </div>
@@ -153,8 +158,9 @@ const RegisterPage = () => {
                                                         onChange={(event) => setFormData({ ...formData, password: event.target.value })}
                                                     />
                                                     <label className="form-label label-registerpage" for="password">Password</label>
-
                                                 </div>
+                                                <small>{errors.password && <div className="text-danger">{errors.password}</div>}</small>
+
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline form-registerpagel">
@@ -168,6 +174,7 @@ const RegisterPage = () => {
                                                     />
                                                     <label className="form-label label-registerpage" for="c onfirmPassword">Confirm Password</label>
                                                 </div>
+                                                <small>{errors.cppassword && <div className="text-danger">{errors.cppassword}</div>}</small>
                                             </div>
                                         </div>
 
@@ -178,18 +185,11 @@ const RegisterPage = () => {
                                                         <small className="text-danger mb-5">
                                                             Please enter complete information
                                                         </small>
-
                                                 }
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-12">
-                                                <small>{errors.username && <div className="text-danger">{errors.username}</div>}</small>
-                                                <small>{errors.birthday && <div className="text-danger">{errors.birthday}</div>}</small>
-                                                <small>{errors.email && <div className="text-danger">{errors.email}</div>}</small>
-                                                <small>{errors.phonenumber && <div className="text-danger">{errors.phonenumber}</div>}</small>
-                                                <small>{errors.password && <div className="text-danger">{errors.password}</div>}</small>
-                                                <small>{errors.cppassword && <div className="text-danger">{errors.cppassword}</div>}</small>
                                             </div>
                                         </div>
 

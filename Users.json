@@ -13,15 +13,6 @@
       "password": "admin123",
       "cppassword": "admin123",
       "id": 2
-    },
-    {
-      "username": "admin",
-      "birthday": "2023-11-09",
-      "phonenumber": "0385784610",
-      "email": "thenshi123@gmail.com",
-      "password": "admin123",
-      "cppassword": "admin123",
-      "id": 3
     }
   ]
 }

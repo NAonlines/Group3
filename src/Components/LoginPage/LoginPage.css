@@ -28,7 +28,7 @@
     color: #333;
 }
 
-.form-control {
+.form-control{
     border: 1px solid #ced4da;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -54,11 +54,36 @@ a{
     text-decoration: none;
 }
 .google-icon{
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
 }
 .imgbanner-login{
     width: 250px
+}
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+
+/****/
+@media (min-width: 992px) {
+    .box-area {
+        width: 950px !important;
+        max-width: 950px !important;
+        min-width: 950px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    .box-area {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }
 @media only screen and (max-width: 768px){
      .box-area{
@@ -72,3 +97,39 @@ a{
         padding: 10px;
      }
 }
+
+/* floating */
+/* .form-loginl{
+    position: relative;
+}
+.label-login{
+  color:#999; 
+  font-size:13px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  user-select: none;
+  left:15px;
+  top:50%;
+  transform: translateY(-50%);
+  padding:0 5px;
+  background:#fff;
+  width: auto;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+ }
+.form-login:not(:placeholder-shown) + .label-login,
+.form-login:focus +.label-login{
+    color: #026db1 ;
+    width:auto;
+    top: 0;
+    padding: 0 5px;
+    transform: translateY(-0.7rem);
+    font-weight: bold;
+}
+.label-login{
+    display: flex;
+    z-index: 1000;
+} */
+

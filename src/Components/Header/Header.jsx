@@ -2,16 +2,30 @@ import React, { useEffect, useState } from 'react';
 import '../Header/Header.css';
 import myImg from '../Img/Logo-cmb.png'
 import LoginPage from '../LoginPage/LoginPage';
+import SearchBar from '../Searchbar/SearchBar';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 function Header() {
     const [isLoginVisible, setLoginVisible] = useState(false);
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState([]);
+    const [isFixed, setIsFixed] = useState(false);
     useEffect(() => {
         axios.get(`http://localhost:8000/Users?username=${username}`)
             .then(res => setUserData(res.data))
             .catch(err => console.log(err));
+
+        const handleScroll = () => {
+            if (window.scrollY > 100) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [username]);
     const navigate = useNavigate();
     const handleLoginClick = () => {
@@ -37,7 +51,7 @@ function Header() {
     return (
         <div>
             <div className="header-top d-none d-md-block">
-                <div className="container-f">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-3">
                             <Link to='/'>
@@ -84,8 +98,8 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className="header-navbar">
-                <nav className="navbar navbar-expand-md nav-color">
+            <header className={`header-navbar ${isFixed ? 'fixed-top' : ''}`}>
+                <nav className="navbar navbar-expand-md navbar-expand-lg navbar-expand-xl navbar-light nav-setting">
                     <div className="container">
                         <a className="navbar-brand d-md-none" href="#">
                             <img className="img-logo-1" src={myImg} alt="" />
@@ -97,19 +111,67 @@ function Header() {
                             <span className="navbar-toggler-icon"></span>
                         </button>
 
-                        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                            <div className="offcanvas-header">
-                                <Link to='/'>
-                                    <h5 className="container offcanvas-title" id="offcanvasNavbarLabel">
-                                        <img className="img-logo-1" src={myImg} alt="Cambridge Hospital" />
-                                    </h5>
-                                </Link>
-                                <button
-                                    type="button"
-                                    className="btn-close text-reset"
-                                    data-bs-dismiss="offcanvas"
-                                    aria-label="Close"
-                                ></button>
+                        <div className="row offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                            <div className="row offcanvas-header">
+                                <div className="col-12 container">
+                                    <div className="row mb-5">
+                                        <div className="col-11">
+                                            <Link to='/'>
+                                                <h5 className="container offcanvas-title" id="offcanvasNavbarLabel">
+                                                    <img className="img-logo-1" src={myImg} alt="Cambridge Hospital" />
+                                                </h5>
+                                            </Link>
+                                        </div>
+                                        <div className="col-1" >
+                                            <button
+                                                type="button"
+                                                className="btn-close text-reset"
+                                                data-bs-dismiss="offcanvas"
+                                                aria-label="Close"
+                                            ></button>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className="d-md-none">
+                                                {username ? (
+                                                    <div>
+                                                        <Link to="/payment" className="mx-1">
+                                                            <button className="fa  fa-credit-card-alt sbtn btn btn-outline-dark btn-sm">
+                                                                Payment
+                                                            </button>
+                                                        </Link>
+
+                                                        <div className="container">
+
+                                                            {userData.map(user => (
+                                                                <div key={user.id}>
+                                                                    <div className="font-weight-normal" >Hi! {user.username}</div>
+                                                                </div>
+                                                            ))}
+                                                            <span className="fa fa-sign-out text-danger mx-1 logout-cursor " onClick={handleLogout}>Log out</span>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                ) : (
+                                                    <div>
+                                                        <Link to="/signup" className='mx-2' >
+                                                            <button className="sbtn btn btn-outline-primary btn-sm">
+                                                                Sign Up
+                                                            </button>
+                                                        </Link>
+                                                        <button className="sbtn btn btn-outline-success btn-sm" onClick={handleLoginClick}>
+                                                            Login
+                                                        </button>
+                                                        {isLoginVisible && <LoginPage onClose={closeLogin} onLoginSuccess={handleLoginSuccess} />}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="offcanvas-body">
                                 <ul className="navbar-nav">
@@ -168,52 +230,21 @@ function Header() {
                                         <a className="nav-link 	d-md-none d-lg-block" href="#">VACANCIES</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link 	d-md-none d-lg-block" href="#">SUCCESS STORIES</a>
+                                        <a className="nav-link 	d-md-none d-xl-block" href="#">SUCCESS STORIES</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <div className="d-md-none d-lg-block">
+                                            <SearchBar />
+                                        </div>
                                     </li>
 
-                                    <div className="d-md-none">
-                                        {username ? (
-                                            <div>
-                                                <Link to='/payment' className='mx-1'>
-                                                    <button className="fa  fa-credit-card-alt sbtn btn btn-outline-dark btn-sm">
-                                                        Payment
-                                                    </button>
-                                                </Link>
-
-                                                <div className='container'>
-
-                                                    {userData.map(user => (
-                                                        <div key={user.id}>
-                                                            <div className="font-weight-normal" >Hi! {user.username}</div>
-                                                        </div>
-                                                    ))}
-                                                    <span className="fa fa-sign-out text-danger mx-1 logout-cursor " onClick={handleLogout}>Log out</span>
-                                                </div>
-
-                                            </div>
-
-
-                                        ) : (
-                                            <div>
-                                                <Link to="/signup" className='mx-2' >
-                                                    <button className="sbtn btn btn-outline-primary btn-sm">
-                                                        Sign Up
-                                                    </button>
-                                                </Link>
-                                                <button className="sbtn btn btn-outline-success btn-sm" onClick={handleLoginClick}>
-                                                    Login
-                                                </button>
-                                                {isLoginVisible && <LoginPage onClose={closeLogin} onLoginSuccess={handleLoginSuccess} />}
-                                            </div>
-                                        )}
-                                    </div>
                                 </ul>
                             </div>
 
                         </div>
                     </div>
                 </nav>
-            </div>
+            </header>
         </div>
     );
 }

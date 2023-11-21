@@ -1,0 +1,41 @@
+{
+  "Registrationdata": [
+    {
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin123",
+      "cppassword": "admin123",
+      "id": 1
+    },
+    {
+      "firstname": "Data",
+      "lastname": "Data",
+      "birthday": "2023-11-17",
+      "gender": "Male",
+      "email": "2@gmail.com",
+      "phonenumber": "1234567890",
+      "address": "a@gmail.com",
+      "city": "59000",
+      "states": "data",
+      "zipcode": "59000",
+      "country": "usa",
+      "insurancename": "data",
+      "id": 2
+    },
+    {
+      "firstname": "Thenshi",
+      "lastname": "Z",
+      "birthday": "2023-11-10",
+      "gender": "Female",
+      "email": "tenshiyami98@gmail.com",
+      "phonenumber": "11111111111111",
+      "address": "data",
+      "city": "data",
+      "states": "data",
+      "zipcode": "data",
+      "country": "jp",
+      "insurancename": "data",
+      "id": 3
+    }
+  ]
+}

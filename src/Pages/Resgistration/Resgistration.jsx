@@ -1,65 +1,166 @@
 import React, { useState } from 'react'
 import '../Resgistration/Resgistration.css';
+import axios from 'axios';
 function Resgistration() {
+    const [regisData, setRegisData] = useState({
+        firstname: '',
+        lastname: '',
+        birthday: '',
+        gender: '',
+        email: '',
+        phonenumber: '',
+        address: '',
+        city: '',
+        states: '',
+        zipcode: '',
+        country: '',
+        insurancename: '',
+    });
+    const [preBook, setPreBook] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [valid, setValid] = useState(true)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let isValid = true;
+        let validationErrors = {};
+
+        if (!regisData.firstname) {
+            isValid = false;
+            validationErrors.firstname = "Firstname required";
+        }
+        if (!regisData.lastname) {
+            isValid = false;
+            validationErrors.lastname = "Lastname required";
+        }
+        if (!regisData.birthday) {
+            isValid = false;
+            validationErrors.birthday = "Birthday required";
+        }
+        if (!regisData.email) {
+            isValid = false;
+            validationErrors.email = "Email required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regisData.email)) {
+            isValid = false;
+            validationErrors.email = "Email is not valid";
+        }
+        if (!regisData.phonenumber) {
+            isValid = false;
+            validationErrors.phonenumber = "Phone number required";
+        } else if (!/(\d{3})(\d{3})(\d{4})/.test(regisData.phonenumber)) {
+            isValid = false;
+            validationErrors.phonenumber = "Phone number not valid";
+        }
+        if (!regisData.address) {
+            isValid = false;
+            validationErrors.address = "Address required";
+        }
+        if (!regisData.city) {
+            isValid = false;
+            validationErrors.city = "City required";
+        }
+        if (!regisData.states) {
+            isValid = false;
+            validationErrors.states = "State required";
+        }
+        if (!regisData.zipcode) {
+            isValid = false;
+            validationErrors.zipcode = "Zipcode required";
+        }
+        if (!regisData.country) {
+            isValid = false;
+            validationErrors.country = "Country required";
+        }
+        if (!regisData.insurancename) {
+            isValid = false;
+            validationErrors.insurancename = "Isurance name required";
+        }
+        setErrors(validationErrors);
+        setValid(isValid);
+        if (Object.keys(validationErrors).length === 0) {
+            console.log("Sending request...");
+            axios.post(`http://localhost:8001/Registrationdata`, regisData).then(result => {
+                console.log("Server respone:", result);
+                alert("Registered Successfully");
+            }).catch(err => { console.log("Server error:", err); })
+        }
+    };
+
+
+    const [country, setCountry] = useState('');
+    const [countryError, setCountryError] = useState('');
+
+    const handleCountryChange = (event) => {
+        setCountryError('');
+        setCountry(event.target.value);
+        setRegisData({ ...regisData, country: event.target.value })
+
+    };
+
 
     return (
-        <form className="intro">
-            <div className="mask d-flex align-items-center h-100 gradient-custom">
+        <div className="intro">
+            <div className="mask d-flex align-items-center h-100">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9 col-xl-7">
                             <div className="card">
                                 <div className="card-body p-4 p-md-5">
                                     <h3 className="mb-4 pb-2">Registration</h3>
-
-                                    <form action="">
-
+                                    <form onSubmit={handleSubmit}>
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registrationl">
-                                                    <input type="text" id="firstName" placeholder="" className="form-control  shadow-none form-registration" />
-                                                    <label className="form-label label-registration" for="firstName">First Name</label>
+                                                    <input type="text"
+                                                        id="firstName"
+                                                        value={regisData.firstname}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, firstname: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="firstName">First Name</label>
                                                 </div>
-
+                                                <small>{errors.firstname && <div className="text-danger">{errors.firstname}</div>}</small>
                                             </div>
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registrationl">
-                                                    <input type="text" id="lastName" placeholder="" className="form-control  shadow-none form-registration" />
-                                                    <label className="form-label label-registration" for="lastName">Last Name</label>
+                                                    <input type="text"
+                                                        id="lastName"
+                                                        value={regisData.lastname}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, lastname: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="lastName">Last Name</label>
                                                 </div>
-
+                                                <small>{errors.lastname && <div className="text-danger">{errors.lastname}</div>}</small>
                                             </div>
                                         </div>
 
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registrationl">
                                                     <input
                                                         type="date"
-                                                        className="form-control shadow-none form-registration"
                                                         id="birthdayDate"
+                                                        value={regisData.birthday}
                                                         placeholder=""
+                                                        className="form-control shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, birthday: event.target.value })}
                                                     />
-                                                    <label htmlFor="birthdayDate" className="form-label label-registration" >Date</label>
+                                                    <label htmlFor="birthdayDate" className="form-label label-registration" >Birthday</label>
                                                 </div>
-
+                                                <small>{errors.birthday && <div className="text-danger">{errors.birthday}</div>}</small>
                                             </div>
                                             <div className="col-md-6 mb-4">
-
-                                                <h6 className="mb-2 pb-1">Gender: </h6>
-
+                                                <h6 className="mb-2 pb-1">Gender </h6>
                                                 <div className="form-check form-check-inline">
                                                     <input
                                                         className="form-check-input"
                                                         type="radio"
                                                         name="inlineRadioOptions"
                                                         id="femaleGender"
-                                                        value="option1"
+                                                        value="Female"
+                                                        onChange={(event) => setRegisData({ ...regisData, gender: event.target.value })}
                                                     />
-                                                    <label className="form-check-label " for="femaleGender">Female</label>
+                                                    <label className="form-check-label " htmlFor="femaleGender">Female</label>
                                                 </div>
 
                                                 <div className="form-check form-check-inline">
@@ -68,65 +169,165 @@ function Resgistration() {
                                                         type="radio"
                                                         name="inlineRadioOptions"
                                                         id="maleGender"
-                                                        value="option2"
+                                                        value="Male"
+                                                        onChange={(event) => setRegisData({ ...regisData, gender: event.target.value })}
                                                     />
-                                                    <label className="form-check-label" for="maleGender">Male</label>
+                                                    <label className="form-check-label" htmlFor="maleGender">Male</label>
                                                 </div>
-
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name="inlineRadioOptions"
-                                                        id="otherGender"
-                                                        value="option3"
-                                                    />
-                                                    <label className="form-check-label" for="otherGender">Other</label>
-                                                </div>
-
+                                                <small>{errors.gender && <div className="text-danger">{errors.gender}</div>}</small>
                                             </div>
                                         </div>
 
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registrationl">
-                                                    <input type="email" id="emailAddress" placeholder="" className="form-control  shadow-none form-registration" />
-                                                    <label className="form-label label-registration" for="emailAddress">Email</label>
+                                                    <input type="email"
+                                                        id="emailAddress"
+                                                        value={regisData.email}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, email: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="emailAddress">Email</label>
                                                 </div>
-
+                                                <small>{errors.email && <div className="text-danger">{errors.email}</div>}</small>
                                             </div>
                                             <div className="col-md-6 mb-4">
 
                                                 <div className="form-outline form-registrationl">
-                                                    <input type="tel" id="phoneNumber" placeholder="" className="form-control  shadow-none form-registration" />
-                                                    <label className="form-label label-registration" for="phoneNumber">Phone Number</label>
+                                                    <input type="tel"
+                                                        id="phoneNumber"
+                                                        value={regisData.phonenumber}
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, phonenumber: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="phoneNumber">Phone Number</label>
                                                 </div>
+                                                <small>{errors.phonenumber && <div className="text-danger">{errors.phonenumber}</div>}</small>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+                                                <div className="form-outline form-registrationl">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control shadow-none form-registration"
+                                                        value={regisData.address}
+                                                        id="Address"
+                                                        placeholder=""
+                                                        onChange={(event) => setRegisData({ ...regisData, address: event.target.value })}
+                                                    />
+                                                    <label htmlFor="Address" className="form-label label-registration" >Address</label>
+                                                </div>
+                                                <small>{errors.address && <div className="text-danger">{errors.address}</div>}</small>
+                                            </div>
+                                            <div className="col-md-3 mb-4">
+
+                                                <div className="form-outline form-registrationl">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control shadow-none form-registration"
+                                                        value={regisData.city}
+                                                        id="City"
+                                                        placeholder=""
+                                                        onChange={(event) => setRegisData({ ...regisData, city: event.target.value })}
+                                                    />
+                                                    <label htmlFor="City" className="form-label label-registration" >City</label>
+                                                </div>
+                                                <small>{errors.city && <div className="text-danger">{errors.city}</div>}</small>
+                                            </div>
+                                            <div className="col-md-3 mb-4">
+                                                <div className="form-outline form-registrationl">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control shadow-none form-registration"
+                                                        value={regisData.states}
+                                                        id="State"
+                                                        placeholder=""
+                                                        onChange={(event) => setRegisData({ ...regisData, states: event.target.value })}
+                                                    />
+                                                    <label htmlFor="State" className="form-label label-registration" >State</label>
+                                                </div>
+                                                <small>{countryError && <div className="text-danger">{countryError}</div>}</small>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4 d-none d-md-block">
+                                            </div>
+                                            <div className="col-md-3 mb-4">
+                                                <div className="form-outline form-registrationl">
+                                                    <input
+                                                        type="text"
+                                                        className="form-control shadow-none form-registration"
+                                                        value={regisData.zipcode}
+                                                        id="zipCode"
+                                                        placeholder=""
+                                                        onChange={(event) => setRegisData({ ...regisData, zipcode: event.target.value })}
+                                                    />
+                                                    <label htmlFor="zipCode " className="form-label label-registration" >Zip code</label>
+                                                </div>
+                                                <small>{errors.zipcode && <div className="text-danger">{errors.zipcode}</div>}</small>
+                                            </div>
+                                            <div className="col-md-3 mb-4">
+                                                <div className="form-outline form-registrationl">
+                                                    <select
+                                                        className="form-control shadow-none form-registration"
+                                                        id="country"
+                                                        value={country}
+                                                        onChange={handleCountryChange}
+
+                                                    >
+                                                        <option value="usa">USA</option>
+                                                        <option value="canada">Canada</option>
+                                                        <option value="uk">UK</option>
+                                                        <option value="india">India</option>
+                                                        <option value="cn">CN</option>
+                                                        <option value="jp">JP</option>
+                                                        <option value="vnm">VN</option>
+                                                    </select>
+                                                    <label htmlFor="Address " className="form-label label-registration" >Country</label>
+                                                </div>
+                                                <small>{errors.country && <div className="text-danger">{errors.country}</div>}</small>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+
+                                                <div className="form-outline form-registrationl">
+                                                    <input type="text"
+                                                        id="insuranceName"
+                                                        placeholder=""
+                                                        className="form-control  shadow-none form-registration"
+                                                        onChange={(event) => setRegisData({ ...regisData, insurancename: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="insuranceName">Insurance Name</label>
+                                                </div>
+                                                <small>{errors.insurancename && <div className="text-danger">{errors.insurancename}</div>}</small>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+
+                                                <div className="form-outline form-registrationl">
+                                                    <input
+                                                        type="checkbox"
+                                                        id="preBook"
+                                                        checked={preBook}
+                                                        onChange={() => setPreBook(!preBook)}
+                                                    />
+                                                    <label className="form-label label-registration" htmlFor="preBook">Pre-book</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-4">
 
                                             </div>
                                         </div>
 
                                         <div className="row">
                                             <div className="col-12">
-
-                                                <h6 className="mb-3">State</h6>
-
-                                                <select className="select">
-                                                    <option value="1">USA</option>
-                                                    <option value="2">UK</option>
-                                                    <option value="3">India</option>
-                                                    <option value="4">CN</option>
-                                                    <option value="5">JP</option>
-                                                    <option value="6">VN</option>
-                                                    <option value="7">SG</option>
-                                                    <option value="8">Russsia</option>
-                                                </select>
-                                                <label className="form-label select-label">your country</label>
-
                                                 <div className="mt-4">
-                                                    <input className="btn btn-warning btn-lg" type="submit" value="Submit" />
+                                                    <input className="btn btn-outline-warning btn-ms" type="submit" value="Submit" />
                                                 </div>
-
                                             </div>
                                         </div>
                                     </form>
@@ -135,8 +336,8 @@ function Resgistration() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </div >
+        </div >
     )
 }
 

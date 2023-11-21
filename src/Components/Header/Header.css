@@ -44,12 +44,18 @@
 }
 
 /* Navbar */
+
 .header-navbar{
     border-top: 2px solid #e5e5e5;
     border-bottom: 2px solid #e5e5e5;
     padding: 15px 0px 15px 0px;
     background-color: #f0f0f0;
+    transition: all 0.3s ease-in-out;
 }
+.header-navbar.fixed-top {
+    padding: 10px 0;
+  }
+  
 .font-home-h4{
     color: #d31f26;
 }
@@ -69,3 +75,6 @@
 .nav-item, .space-font{
     white-space: nowrap;
 }
+
+
+
