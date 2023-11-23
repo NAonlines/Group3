@@ -10,32 +10,20 @@
     {
       "firstname": "Data",
       "lastname": "Data",
-      "birthday": "2023-11-17",
-      "gender": "Male",
-      "email": "2@gmail.com",
-      "phonenumber": "1234567890",
-      "address": "a@gmail.com",
-      "city": "59000",
-      "states": "data",
-      "zipcode": "59000",
-      "country": "usa",
-      "insurancename": "data",
-      "id": 2
-    },
-    {
-      "firstname": "Thenshi",
-      "lastname": "Z",
-      "birthday": "2023-11-10",
+      "birthday": "2023-11-09",
       "gender": "Female",
-      "email": "tenshiyami98@gmail.com",
-      "phonenumber": "11111111111111",
+      "email": "data@gmail.com",
+      "phonenumber": "0385784610",
       "address": "data",
       "city": "data",
       "states": "data",
-      "zipcode": "data",
-      "country": "jp",
+      "zipcode": "Data",
+      "country": "india",
       "insurancename": "data",
-      "id": 3
+      "preBook": true,
+      "department": "9",
+      "price": 11,
+      "id": 7
     }
   ]
 }

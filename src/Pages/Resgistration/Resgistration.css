@@ -17,6 +17,8 @@
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
+  font-weight: bold;
+
 }
 .form-registration:not(:placeholder-shown) + .label-registration,
 .form-registration:focus +.label-registration{
@@ -24,5 +26,4 @@
   top: 0rem;
   padding: 0 5px;
   transform: translateY(-0.7rem);
-  font-weight: bold;
 }

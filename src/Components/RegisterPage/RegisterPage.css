@@ -21,6 +21,7 @@
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
+    font-weight: bold;
   }
   .form-registerpage:not(:placeholder-shown) + .label-registerpage,
   .form-registerpage:focus +.label-registerpage{
@@ -28,7 +29,6 @@
     top: 0;
     padding: 0 5px;
     transform: translateY(-0.7rem);
-    font-weight: bold;
   }
 
   

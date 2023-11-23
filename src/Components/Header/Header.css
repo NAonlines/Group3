@@ -1,7 +1,6 @@
 /* body */
-/* .container-f,
-.container, */
-.offcanvas-body {
+
+/* .offcanvas-body {
     max-width: 100%;
 }
 .navbar-collapse {
@@ -15,7 +14,7 @@
 }
 .header-top{
     overflow-x: hidden;
-}
+} */
 
 /* Header */
 .img-logo-1{
@@ -48,14 +47,11 @@
 .header-navbar{
     border-top: 2px solid #e5e5e5;
     border-bottom: 2px solid #e5e5e5;
-    padding: 15px 0px 15px 0px;
+    padding: 8px 0px 8px 0px;
     background-color: #f0f0f0;
     transition: all 0.3s ease-in-out;
 }
-.header-navbar.fixed-top {
-    padding: 10px 0;
-  }
-  
+
 .font-home-h4{
     color: #d31f26;
 }
@@ -75,6 +71,18 @@
 .nav-item, .space-font{
     white-space: nowrap;
 }
+/* Header.css */
 
+.navbar-nav .nav-link {
+    font-size: 15px;
+  }
+  
+  @media (max-width: 767px) {
+    .offcanvas-body .nav-link {
+      font-size: 15px;
+    }
+  }
+
+  
 
 

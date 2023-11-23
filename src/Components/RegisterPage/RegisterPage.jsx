@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../RegisterPage/RegisterPage.css'
 const RegisterPage = () => {
@@ -14,28 +14,51 @@ const RegisterPage = () => {
     const [errors, setErrors] = useState({});
     const [valid, setValid] = useState(true);
     const navigate = useNavigate();
+    const [userData, setUserData] = useState({})
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/Users")
+            .then(res => setUserData(res.data))
+            .catch(err => console.log(err));
+    }, []);
+
+
+    const isUsernameTaken = (username) => {
+        return userData && userData.some(user => user.username === username);
+    };
+
+    const isEmailTaken = (email) => {
+        return userData && userData.some(user => user.email === email);
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let isValid = true;
         let validationErrors = {};
 
-        if (!formData.username) {
+        if (!formData.username.trim()) {
             isValid = false;
             validationErrors.username = "Username is required";
+        } else if (isUsernameTaken(formData.username)) {
+            isValid = false;
+            validationErrors.username = "Username is already taken";
         }
         if (!formData.birthday) {
             isValid = false;
             validationErrors.birthday = "Birthdays is required";
         }
-        if (!formData.email) {
+        if (!formData.email.trim()) {
             isValid = false;
             validationErrors.email = "Email is required";
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             isValid = false;
             validationErrors.email = "Email is not valid";
+        } else if (isEmailTaken(formData.email)) {
+            isValid = false;
+            validationErrors.email = "email is already taken";
         }
-        if (!formData.phonenumber) {
+        if (!formData.phonenumber.trim()) {
             isValid = false;
             validationErrors.phonenumber = "Phone number is required";
         } else if (!/(\d{3})(\d{3})(\d{4})/.test(formData.phonenumber)) {
@@ -64,10 +87,16 @@ const RegisterPage = () => {
             axios.post(`http://localhost:8000/Users/`, formData)
                 .then(result => {
                     console.log("Server response:", result);
-                    alert("Registered Successfully");
-                    navigate("/");
+                    if (result.status === 201) {
+                        alert("Registered Successfully");
+                        navigate("/");
+                    } else {
+                        console.log("Server error:", result);
+                    }
                 })
-                .catch(err => { console.log("Server error:", err); })
+                .catch(err => {
+                    console.log("Server error:", err);
+                });
         }
     };
 
@@ -77,8 +106,7 @@ const RegisterPage = () => {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9 col-xl-7">
-                            <div div className="card">
-
+                            <div div className="card shadow mb-5 mt-5">
                                 <div className="card-body p-4 p-md-5">
                                     <h3 className="text-center text-primary fw-bold mb-5">Sign Up</h3>
                                     <form className="mt-5" onSubmit={handleSubmit}>
@@ -165,7 +193,7 @@ const RegisterPage = () => {
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline form-registerpagel">
                                                     <input
-                                                        type="text"
+                                                        type="password"
                                                         id="c   onfirmPassword"
                                                         value={formData.cppassword}
                                                         placeholder=""

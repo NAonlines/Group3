@@ -15,8 +15,21 @@ function Resgistration() {
         zipcode: '',
         country: '',
         insurancename: '',
+        preBook: false,
+        department: "",
     });
-    const [preBook, setPreBook] = useState(false);
+    const [price, setPrice] = useState(0);
+    const handlePreBookChange = () => {
+        const preBookPrice = regisData.preBook ? -2 : 2;
+        setRegisData({ ...regisData, preBook: !regisData.preBook });
+        setPrice(price + preBookPrice);
+    };
+    const handleDepartmentChange = (event) => {
+        const selectedValue = event.target.value;
+        setPrice(regisData.preBook ? parseInt(selectedValue, 10) + 2 : parseInt(selectedValue, 10));
+        setRegisData({ ...regisData, department: selectedValue });
+    };
+
     const [errors, setErrors] = useState({});
     const [valid, setValid] = useState(true)
     const handleSubmit = async (e) => {
@@ -78,10 +91,20 @@ function Resgistration() {
         setValid(isValid);
         if (Object.keys(validationErrors).length === 0) {
             console.log("Sending request...");
-            axios.post(`http://localhost:8001/Registrationdata`, regisData).then(result => {
-                console.log("Server respone:", result);
-                alert("Registered Successfully");
-            }).catch(err => { console.log("Server error:", err); })
+            const updatedPrice = regisData.preBook ? price : price;
+            axios
+                .post(`http://localhost:8001/Registrationdata`, {
+                    ...regisData,
+                    price: updatedPrice,
+                    preBook: regisData.preBook,
+                })
+                .then((result) => {
+                    console.log("Server response:", result);
+                    alert("Registered Successfully");
+                })
+                .catch((err) => {
+                    console.log("Server error:", err);
+                });
         }
     };
 
@@ -103,9 +126,9 @@ function Resgistration() {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9 col-xl-7">
-                            <div className="card">
+                            <div className="card shadow mb-5 mt-5">
                                 <div className="card-body p-4 p-md-5">
-                                    <h3 className="mb-4 pb-2">Registration</h3>
+                                    <h3 className="mb-4 pb-2 fw-bold">Registration</h3>
                                     <form onSubmit={handleSubmit}>
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
@@ -284,7 +307,7 @@ function Resgistration() {
                                                         <option value="jp">JP</option>
                                                         <option value="vnm">VN</option>
                                                     </select>
-                                                    <label htmlFor="Address " className="form-label label-registration" >Country</label>
+                                                    <label htmlFor="Country" className="form-label label-registration" >Country</label>
                                                 </div>
                                                 <small>{errors.country && <div className="text-danger">{errors.country}</div>}</small>
                                             </div>
@@ -307,27 +330,54 @@ function Resgistration() {
                                         </div>
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
-
                                                 <div className="form-outline form-registrationl">
                                                     <input
                                                         type="checkbox"
                                                         id="preBook"
-                                                        checked={preBook}
-                                                        onChange={() => setPreBook(!preBook)}
+                                                        checked={regisData.preBook}
+                                                        onChange={handlePreBookChange}
                                                     />
                                                     <label className="form-label label-registration" htmlFor="preBook">Pre-book</label>
                                                 </div>
                                             </div>
                                             <div className="col-md-6 mb-4">
-
+                                                <div className="form-outline form-registrationl">
+                                                    <select
+                                                        className="form-control shadow-none form-registration"
+                                                        id="Department"
+                                                        onChange={handleDepartmentChange}
+                                                    >
+                                                        <option value="0"></option>
+                                                        <option value="4">4$</option>
+                                                        <option value="5">5$</option>
+                                                        <option value="6">6$</option>
+                                                        <option value="7">7$</option>
+                                                        <option value="8">8$</option>
+                                                        <option value="9">9$</option>
+                                                        <option value="10">10$</option>
+                                                    </select>
+                                                    <label htmlFor="Address" className="form-label label-registration">
+                                                        Department
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row border-top">
+                                            <div className="col-md-6 mt-3">
+                                                <div className="text-input my-1">Price:</div>
+                                            </div>
+                                            <div className="col-md-6 mt-3">
+                                                <div className="input-group-text container-fluid">
+                                                    <div className="me-auto">$</div>
+                                                    <div>{price}</div>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div className="row">
-                                            <div className="col-12">
-                                                <div className="mt-4">
-                                                    <input className="btn btn-outline-warning btn-ms" type="submit" value="Submit" />
-                                                </div>
+                                        <div className="row mt-5">
+                                            <div className="col-md -6">
+                                                <input className="btn btn-outline-warning btn-ms" type="submit" value="Submit" />
+
                                             </div>
                                         </div>
                                     </form>

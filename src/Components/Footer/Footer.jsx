@@ -1,6 +1,6 @@
 import React from "react";
 import "../Footer/Footer.css";
-import myImg from "../Img/Logo-cmb.png";
+import images from "../../Assets/dataimg";
 function Footer() {
     return (
         <div className="footer">
@@ -8,7 +8,7 @@ function Footer() {
                 <div className="row d-flex align-items-stretch">
                     <div className="col-lg-4">
                         <div className="container">
-                            <img className="img-logo-1 mb-4" src={myImg} alt="" />
+                            <img className="img-logo-1 mb-4" src={images.logo} alt="Cambridge Hospital" />
                             <p>
                                 Lorem ipsum dolor sit amet, lorem maximus consectetur adipiscing elit. Donec malesuada
                                 lorem maximus mauris.

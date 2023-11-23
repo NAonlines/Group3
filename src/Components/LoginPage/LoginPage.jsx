@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../LoginPage/LoginPage.css';
-import googleicon from '../Img/Google.png';
-import Loginlogo from '../Img/Login6.png';
+import images from '../../Assets/dataimg';
 
 const LoginPage = ({ onClose, onLoginSuccess }) => {
     const loginContainerRef = useRef();
@@ -74,7 +73,7 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
             <div ref={loginContainerRef} className="row border rounded-5 p-3 bg-white shadow box-area col-md-8 login-container">
                 <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
                     <div className="featured-image mb-3">
-                        <img src={Loginlogo} className="img-fluid login-logo-img" alt="Login Logo" style={{ width: '650px' }} />
+                        <img src={images.loginLogo} className="img-fluid login-logo-img" alt="Login Logo" style={{ width: '650px' }} />
                     </div>
                 </div>
                 <div className="col-md-6 right-box">
@@ -136,7 +135,7 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
                             <div className="input-group mb-3">
                                 <button className="btn btn-light w-100">
                                     <a href="/signup" className="text-decoration-none">
-                                        <img className="google-icon" src={googleicon} alt="Google Icon" />
+                                        <img className="google-icon" src={images.googleLogo} alt="Google Icon" />
                                         <small className="text-success fw-bold">Sign In with Google</small>
                                     </a>
                                 </button>
