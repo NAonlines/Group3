@@ -82,6 +82,28 @@
       font-size: 15px;
     }
   }
+.custom-opacity {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: fadeInDown 0.5s;
+}
+
+@keyframes fadeInDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
 
   
 

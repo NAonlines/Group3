@@ -3,10 +3,10 @@ import "../Footer/Footer.css";
 import images from "../../Assets/dataimg";
 function Footer() {
     return (
-        <div className="footer">
+        <div className="footer shadow">
             <div className="container-fluid">
                 <div className="row d-flex align-items-stretch">
-                    <div className="col-lg-4">
+                    <div className="col-lg-4 text-center">
                         <div className="container">
                             <img className="img-logo-1 mb-4" src={images.logo} alt="Cambridge Hospital" />
                             <p>
@@ -64,7 +64,7 @@ function Footer() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="row">
+                                                <div className="row text-center">
                                                     <div className="col-12">
                                                         <div class="mb-3">
                                                             <textarea
@@ -137,7 +137,7 @@ function Footer() {
                 </div>
             </div>
 
-            <div className="mt-5 coppyright-text d-lg-none fw-bold">
+            <div className="mt-5 coppyright-text d-lg-none fw-bold text-center">
                 <p className="mt-5 ">Copyright FPT Aptech ©2023 All rights reserved </p>
             </div>
         </div>

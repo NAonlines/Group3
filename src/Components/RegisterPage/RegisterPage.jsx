@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../RegisterPage/RegisterPage.css'
+import { getUsersAsync, isUsernameTaken, isEmailTaken, registerUser } from '../../Api/Users';
+import '../RegisterPage/RegisterPage.css';
+
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -11,42 +12,24 @@ const RegisterPage = () => {
         password: '',
         cppassword: '',
     });
+    const Users = require('../../Api/Users');
+    const { getUsers, isUsernameTaken, isEmailTaken, registerUser } = Users;
     const [errors, setErrors] = useState({});
     const [valid, setValid] = useState(true);
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({})
+    const [userData, setUserData] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/Users")
-            .then(res => setUserData(res.data))
-            .catch(err => console.log(err));
+        getUsersAsync().then(users => setUserData(users));
     }, []);
 
-
-    const isUsernameTaken = (username) => {
-        return userData && userData.some(user => user.username === username);
-    };
-
-    const isEmailTaken = (email) => {
-        return userData && userData.some(user => user.email === email);
-    };
-
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const validateForm = () => {
         let isValid = true;
         let validationErrors = {};
 
         if (!formData.username.trim()) {
             isValid = false;
             validationErrors.username = "Username is required";
-        } else if (isUsernameTaken(formData.username)) {
-            isValid = false;
-            validationErrors.username = "Username is already taken";
-        }
-        if (!formData.birthday) {
-            isValid = false;
-            validationErrors.birthday = "Birthdays is required";
         }
         if (!formData.email.trim()) {
             isValid = false;
@@ -54,26 +37,21 @@ const RegisterPage = () => {
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
             isValid = false;
             validationErrors.email = "Email is not valid";
-        } else if (isEmailTaken(formData.email)) {
-            isValid = false;
-            validationErrors.email = "email is already taken";
         }
         if (!formData.phonenumber.trim()) {
             isValid = false;
             validationErrors.phonenumber = "Phone number is required";
         } else if (!/(\d{3})(\d{3})(\d{4})/.test(formData.phonenumber)) {
             isValid = false;
-            validationErrors.phonenumber = "Phone number not valid"
+            validationErrors.phonenumber = "Phone number not valid";
         }
-
-        if (!formData.password) {
+        if (!formData.password.trim()) {
             isValid = false;
             validationErrors.password = "Password is required";
         } else if (formData.password.length < 6) {
             isValid = false;
             validationErrors.password = "Password must be at least 6 characters";
         }
-
         if (formData.cppassword !== formData.password) {
             isValid = false;
             validationErrors.cppassword = "Passwords do not match";
@@ -82,27 +60,34 @@ const RegisterPage = () => {
         setErrors(validationErrors);
         setValid(isValid);
 
-        if (Object.keys(validationErrors).length === 0) {
-            console.log("Sending request...");
-            axios.post(`http://localhost:8000/Users/`, formData)
-                .then(result => {
-                    console.log("Server response:", result);
-                    if (result.status === 201) {
-                        alert("Registered Successfully");
-                        navigate("/");
-                    } else {
-                        console.log("Server error:", result);
-                    }
-                })
-                .catch(err => {
-                    console.log("Server error:", err);
-                });
-        }
+        return isValid;
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const isValid = validateForm();
+
+        if (isValid) {
+            const registrationSuccess = await registerUser(formData);
+
+            if (registrationSuccess) {
+                alert("Registered Successfully");
+                navigate("/");
+            } else {
+                if (isUsernameTaken(userData, formData.username)) {
+                    alert("Username is already taken");
+                } else if (isEmailTaken(userData, formData.email)) {
+                    alert("Email is already taken");
+                } else {
+                    alert("Username or Email already taken");
+                }
+            }
+        }
+    };
     return (
         <div className="intro">
-            <div className="mask d-flex align-items-center h-100">
+            <div className="mask d-flex align-items-center text-center h-100">
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-12 col-lg-9 col-xl-7">
@@ -200,7 +185,7 @@ const RegisterPage = () => {
                                                         className="form-control  shadow-none form-registerpage"
                                                         onChange={(event) => setFormData({ ...formData, cppassword: event.target.value })}
                                                     />
-                                                    <label className="form-label label-registerpage" for="c onfirmPassword">Confirm Password</label>
+                                                    <label className="form-label label-registerpage" for="confirmPassword">Confirm Password</label>
                                                 </div>
                                                 <small>{errors.cppassword && <div className="text-danger">{errors.cppassword}</div>}</small>
                                             </div>

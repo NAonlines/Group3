@@ -4,30 +4,39 @@ import LoginPage from '../LoginPage/LoginPage';
 import SearchBar from '../Searchbar/SearchBar';
 import images from '../../Assets/dataimg';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-function Header() {
+import axios, { Axios } from 'axios';
+import { useAuth } from '../LoginPage/AuthProvider';
+
+function Header({ onClose }) {
+    const { user, login, logout } = useAuth();
     const [isLoginVisible, setLoginVisible] = useState(false);
     const [username, setUsername] = useState('');
     const [userData, setUserData] = useState([]);
     const [isFixed, setIsFixed] = useState(false);
-
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
     useEffect(() => {
-        axios.get(`http://localhost:8000/Users?username=${username}`)
-            .then(res => setUserData(res.data))
-            .catch(err => console.log(err));
+        if (user) {
+            setUsername(user.username);
+        }
 
         const handleScroll = () => {
-            if (window.scrollY > 200) {
+            const currentScrollPos = window.scrollY;
+
+            if (currentScrollPos > 200 && currentScrollPos < prevScrollPos) {
                 setIsFixed(true);
             } else {
                 setIsFixed(false);
             }
+
+            setPrevScrollPos(currentScrollPos);
         };
+
         window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [username]);
+    }, [user, prevScrollPos]);
     const navigate = useNavigate();
     const handleLoginClick = () => {
         setLoginVisible(!isLoginVisible);
@@ -38,52 +47,58 @@ function Header() {
     };
 
     const handleLoginSuccess = (loggedInUsername) => {
-        setUsername(loggedInUsername);
         closeLogin();
     };
 
     const handleLogout = () => {
-        setUsername('usernamer');
-        navigate('/');
-        window.location.reload();
-    };
+        setUsername('');
+        logout();
 
+    };
+    const handPaymentClick = () => {
+        navigate('/payment');
+    }
+    const handRegistrationClick = () => {
+        navigate('/registration');
+    }
 
     return (
         <div>
             <header className="header-top d-none d-md-block">
-                <div className="container-fluid">
+                <div className="container-fluid ">
                     <div className="row">
-                        <div className="col-md-3">
-                            <Link to='/'>
+                        <div className="text-center col-md-3">
+                            <Link to="/home">
                                 <img className="img-logo-1" src={images.logo} alt="Cambrigde Hospital" />
                             </Link>
 
                         </div>
-                        <div className="col-md-6">
+                        <div className="text-center col-md-6">
                             <div className="font-top d-none d-lg-block">
                                 <span className="fa fa-phone">Hotline: 617-665-1398</span>
 
                                 <a className="fa fa-envelope" href="mailto:tenshiyami98.email@gmail.com">Email: Tenshiyami98@gmail.com</a>
                             </div>
                         </div>
-                        <div className="col-md-3 d-flex align-items-cente">
-                            {username ? (
-                                <div className='d-flex align-items-center'>
-                                    <Link to='/payment' className='mx-1'>
-                                        <button className="fa  fa-credit-card-alt sbtn btn btn-outline-dark btn-sm">
-                                            Payment
-                                        </button>
-                                    </Link>
-                                    {userData.map(user => (
-                                        <div key={user.id}>
-                                            <div className="space-font font-weight-normal">Hi! {user.username}</div>
+                        <div className="col-md-3 text-center">
+                            {user ? (
+                                <div>
+                                    <button className="fa   fa-calendar-plus-o sbtn btn btn-outline-warming btn-sm mx-1" onClick={handRegistrationClick}>
+                                        Registration
+                                    </button>
+                                    <button className="fa  fa-credit-card-alt sbtn btn btn-primary-dark btn-sm mx-1" onClick={handPaymentClick}>
+                                        Payment
+                                    </button>
+
+                                    {userData.map(username => (
+                                        <div key={username.id}>
+                                            <div className="font-weight-normal">Hi! {username.username}</div>
                                         </div>
                                     ))}
+
+
                                     <span className="fa fa-sign-out text-danger mx-1 logout-cursor space-font " onClick={handleLogout}>Log out</span>
                                 </div>
-
-
                             ) : (
                                 <div>
                                     <Link to="/signup" className="sbtn btn btn-outline-primary btn-sm mx-2">
@@ -104,19 +119,19 @@ function Header() {
                     <a className="navbar-brand d-md-none" href="#">
                         <img className="img-logo-1" src={images.logo} alt="Cambridge Hospital" />
                     </a>
-                    <Link to="/" className="navbar-brand d-none d-md-block">
+                    <Link to="/home" className="navbar-brand d-none d-md-block">
                         <h4 className="font-home-h4 fw-bold">Home</h4>
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="row offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div className="offcanvas offcanvas-end custom-opacity" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div className="row offcanvas-header">
-                            <div className="col-12 container">
+                            <div className="col-12">
                                 <div className="row mb-5">
                                     <div className="col-11">
-                                        <Link to='/'>
+                                        <Link to="/home">
                                             <h5 className="container offcanvas-title" id="offcanvasNavbarLabel">
                                                 <img className="img-logo-1" src={images.logo} alt="Cambridge Hospital" />
                                             </h5>
@@ -133,7 +148,7 @@ function Header() {
                                 </div>
                                 <div className="row">
                                     <div className="col-12">
-                                        <div className="d-md-none">
+                                        <div className="d-md-none text-center">
                                             {username ? (
                                                 <div>
                                                     <Link to="/payment" className="mx-1">
@@ -232,7 +247,7 @@ function Header() {
                                     <a className="nav-link 	d-md-none d-lg-block" href="#">SUCCESS STORIES</a>
                                 </li>
                             </ul>
-                            <form className="d-flex d-md-none d-xl-block justify-content-center" role="search">
+                            <form className="d-flex d-md-none d-xxl-block justify-content-center" role="search">
                                 <SearchBar />
                             </form>
                         </div>

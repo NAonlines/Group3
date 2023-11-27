@@ -3,16 +3,26 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../LoginPage/LoginPage.css';
 import images from '../../Assets/dataimg';
-
+import { getUsersAsync } from '../../Api/Users';
+import { useAuth } from './AuthProvider';
 const LoginPage = ({ onClose, onLoginSuccess }) => {
+    const { login } = useAuth();
     const loginContainerRef = useRef();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
+
     const [errors, setErrors] = useState({});
+    const [loginError, setLoginError] = useState(null);
     const navigate = useNavigate();
 
+    const handleLogin = (user) => {
+        alert('Login Successfully');
+        login(user);
+        onLoginSuccess();
+        navigate('/');
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         let isValid = true;
@@ -33,40 +43,39 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
 
         setErrors(validationErrors);
 
-        if (isValid) {
-            axios
-                .get('http://localhost:8000/Users/', { params: formData })
-                .then((result) => {
-                    const user = result.data.find((u) => u.username === formData.username);
+        if (Object.keys(validationErrors).length === 0) {
+            try {
+                const users = await getUsersAsync();
+                const user = users.find((u) => u.username === formData.username);
 
-                    if (user) {
-                        if (user.password === formData.password) {
-                            alert('Login Successfully');
-                            onLoginSuccess(user.username);
-                            navigate('/');
-                            onClose();
-                        } else {
-                            validationErrors.password = 'Wrong password';
-                            setErrors(validationErrors);
-                        }
-                    } else {
-                        validationErrors.username = 'Wrong username or password';
-                        setErrors(validationErrors);
+                if (user) {
+                    if (user.password === formData.password) {
+                        handleLogin(user);
                     }
-                })
-                .catch((err) => {
-                    console.log('Axios error:', err);
-                });
+                } else {
+                    setLoginError('Wrong username or password');
+                }
+            } catch (error) {
+                console.log('Error fetching users:', error);
+            }
         }
     };
+    const fetchUsers = async () => {
+        const users = await getUsersAsync();
+        console.log('username', users);
+    };
 
+    fetchUsers();
     const handleSignupClick = () => {
+        navigate("/signup")
         window.location.reload();
     };
 
     const handleCancelClick = () => {
+        console.log('Cancel clicked');
         onClose();
     };
+
 
     return (
         <div className="row login-page-overlay min-vh-100">
@@ -78,7 +87,7 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
                 </div>
                 <div className="col-md-6 right-box">
                     <div className="row align-items-center">
-                        <div className="header-text mb-4">
+                        <div className="header-text mb-4 text-center">
                             <h2>Hello, Again!!</h2>
                             <p>We are happy to have you back.</p>
                         </div>
@@ -90,12 +99,12 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
                                     id="floatingUsername"
                                     placeholder="Username"
                                     onChange={(event) => setFormData({ ...formData, username: event.target.value })}
+                                    required
                                 />
                                 <label className="form-label label-login" htmlFor="floatingUsername">
                                     Username
                                 </label>
                             </div>
-                            <small>{errors.password && <div className="text-danger small-text">{errors.password}</div>}</small>
 
                             <div className="row mb-3 form-floating form-loginl">
                                 <input
@@ -105,12 +114,13 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
                                     placeholder=""
                                     aria-describedby="passwordHelpBlock"
                                     onChange={(event) => setFormData({ ...formData, password: event.target.value })}
+                                    required
                                 />
                                 <label className="form-label label-login" htmlFor="floatingPassword">
                                     Password
                                 </label>
                             </div>
-                            <small>{errors.username && <div className="text-danger small-text">{errors.username}</div>}</small>
+                            <small>{loginError && <div className="text-danger small-text">{loginError}</div>}</small>
                             <div className="input-group mb-5 d-flex justify-content-between">
                                 <div className="form-check">
                                     <input type="checkbox" className="form-check-input" id="formCheck" />
@@ -144,9 +154,9 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
                                 <small>
                                     Don't have an account?{' '}
                                     <button className="btn btn-outline-primary btn-sm" onClick={handleSignupClick}>
-                                        <Link to="/signup" className="text-decoration-none">
-                                            Sign Up
-                                        </Link>
+
+                                        Sign Up
+
                                     </button>
                                 </small>
                             </div>
@@ -159,3 +169,6 @@ const LoginPage = ({ onClose, onLoginSuccess }) => {
 };
 
 export default LoginPage;
+
+
+
