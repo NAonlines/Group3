@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUsersAsync, isUsernameTaken, isEmailTaken, registerUser } from '../../Api/Users';
 import '../RegisterPage/RegisterPage.css';
 
+
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         username: '',
@@ -74,15 +75,19 @@ const RegisterPage = () => {
             if (registrationSuccess) {
                 alert("Registered Successfully");
                 navigate("/");
-            } else {
-                if (isUsernameTaken(userData, formData.username)) {
-                    alert("Username is already taken");
-                } else if (isEmailTaken(userData, formData.email)) {
-                    alert("Email is already taken");
-                } else {
-                    alert("Username or Email already taken");
-                }
             }
+            // else {
+            //     const isUsernameTaken = await isUsernameTakenAsync(username);
+            //     const isEmailTaken = await isEmailTakenAsync(email);
+
+            //     if (isUsernameTaken) {
+            //         alert('Registration failed. Username already taken.');
+            //     } else if (isEmailTaken) {
+            //         alert('Registration failed. Email already taken.');
+            //     } else {
+            //         alert('Registration failed. Please try again later.');
+            //     }
+            // }
         }
     };
     return (

@@ -1,0 +1,258 @@
+.expo a{
+  display: inline-block;
+  padding: 10px 45px;
+  background-color: #08135c;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+  border: 1px solid #08135c;
+  outline: none;
+  margin-top: 15px;
+  text-decoration: none;
+}
+.expo a:hover{
+  background-color: transparent;
+  color: #08135c;
+}
+
+
+/* Logoacademic */
+.testimonial {
+  margin-top: 50px;
+}
+.testimonial_Carousel .carousel-caption {
+  position: inherit;
+  padding: 0;
+}
+.testimonial_box {
+  text-align: center;
+}
+.test_box {
+  padding: 30px 25px;
+}
+.flot_right {
+  float: right;
+}
+
+.testimonial_Carousel .test_box1 {
+  text-align: center;
+}
+
+.testimonial_Carousel .test_box1 figure {
+  margin: 0;
+}
+
+.testimonial_Carousel .test_box1 figure img {
+  max-width: 206px;
+  border-radius: 200px;
+  border: #12153c solid 6px;
+}
+
+.testimonial_Carousel .test_box1 h4 {
+  color: black;
+  font-size: 20px;
+  line-height: 18px;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  padding: 0;
+  padding-top: 15px;
+}
+
+.testimonial_Carousel .test_box i {
+  font-size: 17px;
+  line-height: 28px;
+  text-align: left;
+  display: block;
+}
+
+.testimonial_Carousel .test_box p {
+  font-size: 18px;
+  line-height: 28px;
+  color: black;
+  text-align: left;
+  padding-top: 20px;
+}
+
+
+
+
+
+
+
+/* Live and Learn in a Vibrant Community */
+.blog_section .box {
+  margin-top: 55px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+          
+  
+}
+.blog_section .box:hover{
+  margin-top: 55px;
+  background-color: #ffffff;
+  transform: scale(0.95);
+}
+
+.blog_section .box .img-box img {
+  width: 100%;
+}
+
+.blog_section .box .detail-box {
+  padding: 25px;
+}
+
+.blog_section .box .detail-box h5 {
+  font-size: 23px;
+}
+
+.blog_section .box .detail-box p {
+  font-size: 20px;
+  color: #444;
+}
+
+.blog_section .box .detail-box a {
+  display: inline-block;
+  padding: 10px 30px;
+  background-color: #08135c;
+  color: #ffffff;
+  border-radius: 0;
+  border: 1px solid #08135c;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.blog_section .box .detail-box a:hover {
+  background-color: transparent;
+  color: #08135c;
+}
+
+/* World-class Training */
+.appointment-form {
+  border: 2px solid #B0C4DE; /* Màu và độ rộng đường viền */
+  padding: 20px; /* Khoảng cách từ viền đến nội dung bên trong */
+  border-radius: 8px; /* Cong viền để tạo góc tròn */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+  background-color: #B0C4DE;
+}
+.wok {
+    margin-left: 40px;
+    margin-right: 40px;
+ /* Thêm bất kỳ kiểu dáng hoặc định dạng khác cho phần nội dung wok nếu cần thiết */
+}
+.text {
+  /* Định dạng văn bản nếu cần thiết */
+}
+
+
+
+/* Further Learner Resources */
+.service_section {
+  text-align: center;
+}
+
+.service_section .heading_container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.service_section .box {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-bottom: 100px;
+}
+
+.service_section .box::before {
+  content: "";
+  width: 275px;
+  height: 275px;
+  position: absolute;
+  right: -137.5px;
+  bottom: -137.5px;
+  background-color: #faf8fd;
+  z-index: -1;
+  border-radius: 100%;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.service_section .box .img-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 125px;
+  border-radius: 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.service_section .box .img-box img {
+  width: 75px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.service_section .box .detail-box {
+  margin-top: 15px;
+}
+
+.service_section .box .detail-box h5 {
+  font-weight: bold;
+  position: relative;
+}
+
+.service_section .box .detail-box a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.service_section .box:hover {
+  color: #ffffff;
+}
+
+.service_section .box:hover::before {
+  -webkit-transform: scale(5);
+          transform: scale(5);
+  background-color: #08135c;
+}
+
+.service_section .box:hover img {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+}
+
+.service_section .btn-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 45px;
+}
+.service_section .btn-box a:hover {
+  color: #ffffff;
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}

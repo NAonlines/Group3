@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../Registration/Registration.css';
-import { Navigate } from 'react-router-dom';
-import { registerUser, addToCart, getRegistrationpay } from '../../Api/Users.js'
-import axios from 'axios';
+import { registerUser } from '../../Api/Users.js'
 function Resgistration() {
     const [regisData, setRegisData] = useState({
         firstname: '',
         lastname: '',
         birthday: '',
         gender: '',
-        email: '',
-        phonenumber: '',
+        phone1: '',
+        phone2: '',
         address: '',
         city: '',
         states: '',
@@ -20,6 +19,18 @@ function Resgistration() {
         preBook: false,
         department: "",
     });
+    const departments = [
+        { label: 'Obstetric', value: 4 },
+        { label: 'Hematology', value: 2 },
+        { label: 'Cardiology', value: 6 },
+        { label: 'General health check', value: 7 },
+        { label: 'Eye check', value: 8 },
+        { label: 'Otorhinolaryngology', value: 5 },
+        { label: 'Oncology Department', value: 9 },
+    ];
+
+
+    const navigate = useNavigate();
     const [price, setPrice] = useState(0);
     const handlePreBookChange = () => {
         const preBookPrice = regisData.preBook ? -2 : 2;
@@ -51,19 +62,19 @@ function Resgistration() {
             isValid = false;
             validationErrors.birthday = "Birthday required";
         }
-        if (!regisData.email) {
+        if (!regisData.phone1) {
             isValid = false;
-            validationErrors.email = "Email required";
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(regisData.email)) {
+            validationErrors.phone1 = "Phone 1 required";
+        } else if (!/(\d{3})(\d{3})(\d{4})/.test(regisData.phone1)) {
             isValid = false;
-            validationErrors.email = "Email is not valid";
+            validationErrors.phone1 = "Phone 1 is not valid";
         }
-        if (!regisData.phonenumber) {
+        if (!regisData.phone2) {
             isValid = false;
-            validationErrors.phonenumber = "Phone number required";
-        } else if (!/(\d{3})(\d{3})(\d{4})/.test(regisData.phonenumber)) {
+            validationErrors.phone2 = "Phone 2 required";
+        } else if (!/(\d{3})(\d{3})(\d{4})/.test(regisData.phone2)) {
             isValid = false;
-            validationErrors.phonenumber = "Phone number not valid";
+            validationErrors.phone2 = "Phone 2 not valid";
         }
         if (!regisData.address) {
             isValid = false;
@@ -95,17 +106,18 @@ function Resgistration() {
             console.log('Sending request...');
             const updatedPrice = regisData.preBook ? price : price;
 
-            const registrationResult = await registerUser({
+            const registeredUser = await registerUser({
                 ...regisData,
                 price: updatedPrice,
                 preBook: regisData.preBook,
                 Registrationpay: [],
             });
 
-            if (registrationResult) {
+            if (registeredUser) {
                 alert('Registered Successfully');
+                navigate('/payment', { state: { registrationData: regisData, price: updatedPrice } });
             } else {
-                alert('Registration failed. Username or email already taken.');
+                alert('Registration failed. Registration already taken.');
             }
         }
     };
@@ -130,7 +142,7 @@ function Resgistration() {
                         <div className="col-12 col-lg-9 col-xl-7">
                             <div className="card shadow mb-5 mt-5">
                                 <div className="card-body p-4 p-md-5">
-                                    <h3 className="mb-4 pb-2 fw-bold">Registration</h3>
+                                    <h3 className="mb-4 pb-2 fw-bold">Medical Register</h3>
                                     <form onSubmit={handleSubmit}>
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
@@ -206,28 +218,28 @@ function Resgistration() {
                                         <div className="row">
                                             <div className="col-md-6 mb-4">
                                                 <div className="form-outline form-registrationl">
-                                                    <input type="email"
-                                                        id="emailAddress"
-                                                        value={regisData.email}
+                                                    <input type="phone1"
+                                                        id="phone1Address"
+                                                        value={regisData.phone1}
                                                         placeholder=""
                                                         className="form-control  shadow-none form-registration"
-                                                        onChange={(event) => setRegisData({ ...regisData, email: event.target.value })} />
-                                                    <label className="form-label label-registration" htmlFor="emailAddress">Email</label>
+                                                        onChange={(event) => setRegisData({ ...regisData, phone1: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="phone1Address">Phone 1</label>
                                                 </div>
-                                                <small>{errors.email && <div className="text-danger">{errors.email}</div>}</small>
+                                                <small>{errors.phone1 && <div className="text-danger">{errors.phone1}</div>}</small>
                                             </div>
                                             <div className="col-md-6 mb-4">
 
                                                 <div className="form-outline form-registrationl">
                                                     <input type="tel"
-                                                        id="phoneNumber"
-                                                        value={regisData.phonenumber}
+                                                        id="phone2"
+                                                        value={regisData.phone2}
                                                         placeholder=""
                                                         className="form-control  shadow-none form-registration"
-                                                        onChange={(event) => setRegisData({ ...regisData, phonenumber: event.target.value })} />
-                                                    <label className="form-label label-registration" htmlFor="phoneNumber">Phone Number</label>
+                                                        onChange={(event) => setRegisData({ ...regisData, phone2: event.target.value })} />
+                                                    <label className="form-label label-registration" htmlFor="phone2">Phone 2</label>
                                                 </div>
-                                                <small>{errors.phonenumber && <div className="text-danger">{errors.phonenumber}</div>}</small>
+                                                <small>{errors.phone2 && <div className="text-danger">{errors.phone2}</div>}</small>
                                             </div>
                                         </div>
                                         <div className="row">
@@ -349,14 +361,18 @@ function Resgistration() {
                                                         id="Department"
                                                         onChange={handleDepartmentChange}
                                                     >
-                                                        <option value="0"></option>
-                                                        <option value="4">4$</option>
-                                                        <option value="5">5$</option>
-                                                        <option value="6">6$</option>
-                                                        <option value="7">7$</option>
-                                                        <option value="8">8$</option>
-                                                        <option value="9">9$</option>
-                                                        <option value="10">10$</option>
+                                                        {departments.map((department) => (
+                                                            <option key={department.value} value={department.value}>
+                                                                {department.label}
+                                                            </option>
+                                                        ))}
+                                                        <option value="4">Obstetric</option>
+                                                        <option value="2">Hematology</option>
+                                                        <option value="6">Cardiology</option>
+                                                        <option value="7">General health check$</option>
+                                                        <option value="2">Eye check</option>
+                                                        <option value="5">Otorhinolaryngology</option>
+                                                        <option value="2">Oncology Department</option>
                                                     </select>
                                                     <label htmlFor="Address" className="form-label label-registration">
                                                         Department

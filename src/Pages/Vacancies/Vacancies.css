@@ -1,0 +1,40 @@
+.service-item1 {
+    height: 350px;
+    padding: 0 30px;
+    transition: .5s;
+}
+.service-item1:hover{
+    height: 350px;
+    padding: 0 30px;
+    transition: .5s;
+    transform: scale(0.85)
+}
+
+
+.service-item1 a.btn {
+    display: inline-block;
+    padding: 10px 45px;
+    background-color: #08135c;
+    color: #ffffff;
+    border-radius: 5px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+    border: 1px solid #08135c;
+    outline: none;
+    margin-top: 15px;
+    opacity: 0;
+    position: relative;
+    
+}
+.service-item1:hover a.btn {
+    bottom: -24px;
+    opacity: 1;
+    position: relative;
+    background-color:#08135c ;
+    color: white;
+}
+.Vacancies img{
+    width: 150px;
+}

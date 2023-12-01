@@ -1,0 +1,143 @@
+.highlighted-text {
+    background-color: yellow;
+    font-weight: bold;
+}
+.slide-home {
+    margin-bottom: -10px;
+
+}
+.caption-right {
+    text-align: right;
+}
+.caretopeople{
+    height: 20px;
+    width: 250px;
+}
+.dr-img {
+    height: 360px;
+    width: 200px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .dr-img {
+        height: 360px;
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 1150px) {
+    .dr-img {
+        height: 360px;
+        width: 230px;
+    }
+}
+
+@media only screen and (max-width: 1149px) and (min-width: 1050px) {
+    .dr-img {
+        height: 360px;
+        width: 210px;
+    }
+}
+
+@media only screen and (max-width: 1049px) and (min-width: 900px) {
+    .dr-img {
+        height: 340px;
+        width: 190px;
+    }
+}
+
+@media only screen and (max-width: 899px) and (min-width: 750px) {
+    .dr-img {
+        height: 320px;
+        width: 170px;
+    }
+}
+
+@media only screen and (max-width: 749px) and (min-width: 600px) {
+    .dr-img {
+        height: 300px;
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 599px) and (min-width: 450px) {
+    .dr-img {
+        height: 280px;
+        width: 170px;
+    }
+}
+
+
+.dr-zoom {
+    padding-bottom: auto;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.dr-img:hover {  
+    transform: scale(1.1);
+}
+
+.dr-img {
+    position: relative;
+    
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.dr-img {
+    position: relative;
+    overflow: hidden;
+}
+  
+.dr-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9); 
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+  
+.dr-item:hover .dr-img::before {
+    opacity: 0.7;
+}
+  
+.dr-img-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.dr-item:hover .dr-img-info {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+  
+.dr-img-info a {
+    margin: 0 5px;
+}
+  
+.dr-item {
+    margin-bottom: 20px;
+}
+.award-container {
+    margin: 20px 0;
+}
+.award-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+

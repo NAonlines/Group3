@@ -1,0 +1,130 @@
+.page-title-area {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Set text color */
+    text-align: center;
+}
+
+/* Add any additional styling you need for the text */
+.text-overlay h2 {
+    font-size: 24px;
+    /* Add other styles as needed */
+}
+
+.text-overlay ul {
+    /* Add styles for the unordered list */
+}
+.active{
+    list-style-type: none ;
+    color: red;
+}
+.heart{
+    padding: 20px 20px 20px 20px;
+}
+.spe{
+    background-color: aqua;
+    width: 900px;
+    height: 180px;
+}
+.dichvu{
+    background-color: rgb(210, 246, 246);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.first-facility-item {
+    display: flex;
+    align-items: center;
+}
+  
+.icon {
+    margin-right: 10px;
+}
+.icon2{
+    width: 70px;
+    height: 70px;
+}
+
+.second-facility-item {
+    border: 2px solid #ccc; 
+    border-radius: 8px;
+    padding: 20px; 
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.second-facility-item:hover {
+    border-color: #007bff; /* Change border color on hover */
+}
+
+.emergency-area {
+    padding: 30px; /* Optional: To create padding around the entire emergency area */
+}
+
+.emergency-content {
+    margin: 0 30px; /* Apply left and right margin of 20px */
+}
+
+.emergency-img {
+    margin: 0 30px; /* Apply left and right margin of 20px */
+}
+
+/* Optional: Set max-width for the image to ensure responsiveness */
+.emergency-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Add your custom styles here */
+.our-work-area {
+    padding-top: 100px;
+}
+
+.carousel-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.single-work {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Adjust the background color as needed */
+}
+
+.work-title {
+    margin-top: 10px;
+}
+
+.work-content-wrap {
+    margin-top: 20px;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.carousel-item img {
+    width: 350px;
+    height: 250px;
+    object-fit: cover; /* Ensure the image covers the specified dimensions */
+}
+
+
+

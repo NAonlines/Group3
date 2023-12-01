@@ -83,7 +83,7 @@
     }
   }
 .custom-opacity {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth parameter) for opacity */
   }
 
 .fixed-header {
@@ -103,7 +103,7 @@
     }
 }
 
-
+/* **** */
 
   
 
