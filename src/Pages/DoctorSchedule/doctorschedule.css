@@ -1,0 +1,25 @@
+.doctorschedule {
+  transition: 0.5s;
+}
+.doctorschedule:hover {
+  transform: scale(0.95);
+}
+.doctorschedule .blog-item a {
+  display: inline-block;
+  padding: 10px 25px;
+  background-color: #1977cc;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid #1977cc;
+  outline: none;
+  margin-top: 15px;
+  text-decoration: none;
+}
+.doctorschedule .blog-item a:hover {
+  background-color: transparent;
+  color: #1977cc;
+}

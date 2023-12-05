@@ -4,9 +4,9 @@ const userData = {
 
 export const addDefaultAdmin = () => {
   const defaultAdmin = {
-    username: 'admin',
-    email: 'admin@gmail.com',
-    password: 'admin123',
+    username: "admin",
+    email: "admin@gmail.com",
+    password: "admin123",
     Registrationpay: [],
   };
   userData.users.push(defaultAdmin);
@@ -58,10 +58,6 @@ export const registerUser = async (newUser) => {
   userData.users.push(userWithRegistrationpay);
   return userWithRegistrationpay;
 };
-
-
-
-
 
 export const getRegistrationpay = (userId) => {
   const user = userData.users.find((user) => user.id === userId);

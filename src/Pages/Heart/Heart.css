@@ -1,0 +1,92 @@
+.imgKhoi {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+.aboutUs {
+  padding: 80px 0;
+}
+
+.aboutUs img {
+  max-width: 100%;
+  height: auto;
+}
+
+.txt-area {
+  padding: 80px 0;
+  background-color: #f8f8f8;
+}
+
+.txt-area h1 {
+  color: #333;
+  font-size: 36px;
+  font-weight: bold;
+}
+.timeline {
+  position: relative;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+}
+
+.timeline strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+#content {
+  padding: 80px 0;
+}
+
+#content h3 {
+  color: #333;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#content p {
+  line-height: 1.6;
+  color: #666;
+}
+
+.list-group-item {
+  border: none;
+}
+.block-heading-six h4 {
+  color: #fff;
+}
+
+.team-member {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.team-member img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.team-member h4 {
+  color: #333;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.team-member span {
+  color: #999;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}

@@ -7,13 +7,16 @@
 }
 
 .kiemtrask  h2:hover{
-   border: 10px groove burlywood;
-    font-size: 70px;
-    background-color: chocolate;
+   /* border: 10px groove burlywood; */
+     font-size: 70px; 
+    font-weight: bolder;
+    color: blueviolet;
+    
 }
 .tieude:hover{
     color: chocolate;
     background-color: lightgreen;
-    font-size: 30px;
-    line-height: 70px;
+      /* font-size: 30px;  */
+     font-weight: bolder;
+   
 }

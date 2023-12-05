@@ -1,0 +1,201 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global Styles */
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Section Headline Styles */
+.section-headline {
+  margin-bottom: 40px;
+}
+
+.section-headline h2 {
+  font-size: 36px;
+  color: var(--primary-color);
+}
+
+/* About Area Styles */
+.about-area {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+/* Single Well Styles */
+.single-well img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Well Middle Styles */
+.well-middle {
+  padding-left: 30px;
+}
+
+/* Single Well Text Styles */
+.single-well p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.single-well ul {
+  padding-left: 20px;
+}
+
+.single-well ul li {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.single-well ul li i {
+  color: var(--primary-color);
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Services Area Styles */
+#services {
+  background-color: #fff;
+  padding: 60px 0;
+}
+
+.services-head h2 {
+  color: var(--primary-color);
+}
+
+/* Services Details Styles */
+.services-details:hover h4,
+.services-details:hover .services-icon {
+  color: var(--primary-color);
+}
+
+/* Single Services Styles */
+.single-services {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.single-services .services-icon {
+  color: var(--primary-color);
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.single-services h4 {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.single-services p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Blog Area Styles */
+#blog {
+  background-color: #f9f9f9;
+  padding: 60px 0;
+}
+
+/* Blog Inner Styles */
+.blog-inner {
+  position: relative;
+}
+
+/* Blog Overly Styles */
+.blog-overly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Blog Headline Styles */
+.blog-inner h2 {
+  font-size: 36px;
+  color: var(--primary-color);
+  margin-bottom: 40px;
+}
+
+/* Single Blog Styles */
+.single-blog {
+  margin-bottom: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.single-blog-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.single-blog-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.blog-meta {
+  background-color: #fff;
+  padding: 15px;
+  position: relative;
+}
+
+.blog-meta span {
+  margin-right: 15px;
+}
+
+.blog-meta span i {
+  margin-right: 5px;
+  color: var(--primary-color);
+}
+
+.blog-text h4 {
+  font-size: 22px;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.blog-text p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.ready-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.ready-btn:hover {
+  background-color: #333;
+}

@@ -30,10 +30,11 @@
 }
 .active{
     list-style-type: none ;
-    color: red;
+    color: rgb(15, 232, 8);
 }
 .heart{
-    padding: 20px 20px 20px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .spe{
     background-color: aqua;

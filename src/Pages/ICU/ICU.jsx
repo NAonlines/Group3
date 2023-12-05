@@ -6,27 +6,30 @@ function ICU() {
     return (
         <body>
             <div id="__next">
-                <div className="page-title-area bg-1">
-                    <div className="d-table">
-                        <div className="image-container">
-                            <img className='heart img-fluid' src={images.heart} alt="" />
-                            <div className="text-overlay">
-                                <div className="d-table-cell">
-                                    <div className="container">
-                                        <div className="page-title-content">
-                                            <h2 className="active" _msttexthash="2277236" _msthash="425">Services CHA Cambridge</h2>
-                                            <ul>
-                                                <li>
-                                                    <a href="/" _msttexthash="44122" _msthash="426" previewlistener="true">Nhà</a>
-                                                </li>
-                                                <li className="active" _msttexthash="2277236" _msthash="427">Services CHA Cambridge</li>
-                                            </ul>
-                                        </div>
+                <div id="root">
+                    <section className="breadcrumb-bg pt-200 pb-180 page_header_bg">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-9 col-md-9">
+                                    <div className="page-title">
+                                        <p className="small-text pb-15">We are here for your care.</p>
+                                        <h2>CHA Cambridge</h2>
+                                    </div>
+                                </div>
+                                <div
+                                    className="col-lg-3 col-md-3 d-flex justify-content-start justify-content-md-end align-items-center">
+                                    <div className="page-breadcumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol className="breadcrumb ">
+                                                <li className="breadcrumb-item"><a href="/" previewlistener="true">Home</a></li>
+                                                <li className="breadcrumb-item active" aria-current="page">Blog</li>
+                                            </ol>
+                                        </nav>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
 
                 <div className="first-facility-area services-page-one">

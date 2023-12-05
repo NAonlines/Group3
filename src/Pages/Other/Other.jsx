@@ -65,14 +65,13 @@ function Facility() {
 
                                 <article className="postbox post format-video mb-40">
                                     <div className="postbox__video">
-                                        <video width="640" height="360" controls>
+                                        <video width="100%" height="auto" controls style={{ maxWidth: '100%' }}>
                                             <source src={images.b2} type="video/mp4" />
                                             Your browser does not support the video tag.
                                         </video>
-                                        <button className="popup-video video-btn border-0">
-                                            <i className="fas fa-play"></i>
-                                        </button>
                                     </div>
+
+
 
                                     <div className="postbox__text p-50">
                                         <div className="post-meta mb-15">
@@ -130,14 +129,12 @@ function Facility() {
 
                                 <article className="postbox post format-audio mb-40">
                                     <div className="postbox__audio">
-                                        <video width="640" height="360" controls>
+                                        <video width="100%" height="auto" controls style={{ maxWidth: '100%' }}>
                                             <source src={images.b6} type="video/mp4" />
                                             Your browser does not support the video tag.
                                         </video>
-                                        <button className="popup-video video-btn border-0">
-                                            <i className="fas fa-play"></i>
-                                        </button>
                                     </div>
+
 
                                     <div className="postbox__text p-50">
                                         <div className="post-meta mb-15">
@@ -164,8 +161,8 @@ function Facility() {
                         </div>
                     </div>
                 </section>
-            </div>
-        </body>
+            </div >
+        </body >
 
     );
 }
