@@ -26,10 +26,13 @@ Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed
 
 #### <div align="center">Built With</div>
 
-###### <div align="center">Below is the languages/libraries we used for this project:![My Skills](https://skillicons.dev/icons?i=,html,css,js,bootstrap,react)</div>
+###### <div align="center">Below is the languages/libraries we used for this project:</div>
+
+###### <div align="center">![HTML]&nbsp;![CSS3] &nbsp;![JS]&nbsp;![BOOSTRAP]&nbsp;![REACT]
+</div>
 
 
-![HTML]&nbsp;![CSS3] &nbsp;![JS]&nbsp;![BOOSTRAP]&nbsp;![REACT]
+
 
 <div  align="left">
 
