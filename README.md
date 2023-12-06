@@ -24,9 +24,10 @@ Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed
 ![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Homeview.png)
 
 
-### Built With
+#### <div align="center">Built With</div>
 
-Below is the languages/libraries we used for this project:
+###### <div align="center">Below is the languages/libraries we used for this project:![My Skills](https://skillicons.dev/icons?i=,html,css,js,bootstrap,react)</div>
+
 
 ![HTML]&nbsp;![CSS3] &nbsp;![JS]&nbsp;![BOOSTRAP]&nbsp;![REACT]
 
