@@ -1,12 +1,8 @@
 ![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Logo-cmb.png)
 
-
-
 <br  />
 
 <div  align="center">
-    
-
 
 
 </a>
@@ -14,25 +10,22 @@
 Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed to ensuring equity and excellence for everyone, every time. With over 140,000 patients in the North Boston area, CHA takes pride in delivering the healthcare that people need most in their lives. The website will become even more accessible to patients in the future.</p>
 
 ###### <p align="center">[Explore the sourse » ](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall) [Explore the documents » ](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/tree/master/Documents)
+
  </p>
 
+<br  /><a  href="https://e-project-fpt-aptech-group-3-cambridge-hospitall.vercel.app/" target="_blank">View Demo</a> . <a  href="https://youtu.be/Ep4qcOa5ZuA" target="_blank">Video</a>
 
-
-<br  /><a  href="https://e-project-fpt-aptech-group-3-cambridge-hospitall.vercel.app/" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
 </div>
 
 ![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Homeview.png)
-
 
 #### <div align="center">Built With</div>
 
 ###### <div align="center">Below is the languages/libraries we used for this project:</div>
 
 ###### <div align="center">![HTML]&nbsp;![CSS3] &nbsp;![JS]&nbsp;![BOOSTRAP]&nbsp;![REACT]
+
 </div>
-
-
-
 
 <div  align="left">
 
