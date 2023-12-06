@@ -18,7 +18,7 @@ Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed
 
 
 
-<br  /><a  href="" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
+<br  /><a  href="https://e-project-fpt-aptech-group-3-cambridge-hospitall.vercel.app/" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
 </div>
 
 ![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Homeview.png)
