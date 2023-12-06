@@ -1,4 +1,5 @@
-![example](Logo-cmb.png)
+![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Logo-cmb.png)
+
 
 
 <br  />
@@ -20,7 +21,8 @@ Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed
 <br  /><a  href="" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
 </div>
 
-![example](Homeview.png)
+![Tên thay thế](https://github.com/NAonlines/eProject-Fpt-Aptech-Group_3_Cambridge-hospitall/raw/master/src/Assets/img/Homeview.png)
+
 
 ### Built With
 
