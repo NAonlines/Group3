@@ -17,7 +17,7 @@ Cambridge Health Alliance (CHA) is a vibrant, innovative health system committed
 
 
 
-<br  /><a  href="https://e-project-fpt-aptech-group-3-cambridge-hospitall.vercel.app/" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
+<br  /><a  href="" target="_blank">View Demo</a> . <a  href="" target="_blank">Video</a>
 </div>
 
 ![example](Homeview.png)
@@ -95,7 +95,7 @@ Feedback must be taken.</br>
 
 Phạm Hữu Nam Anh `Student1501062` </br>
 Lê Khoa`Student1501159` </br>
-Vương Hữu Thắng `Student1501300	` </br>
+Vương Hữu Thắng `Student1501300` </br>
 Trần Vinh Quang`Student1501274` </br>
 
 [HTML]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
