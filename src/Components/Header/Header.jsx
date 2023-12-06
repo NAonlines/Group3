@@ -147,7 +147,7 @@ function Header({ onClose }) {
                   className="fa fa-envelope"
                   href="mailto:tenshiyami98.email@gmail.com"
                 >
-                  Email: Tenshiyami98@gmail.com
+                  Email: Hopistal@gmail.com
                 </a>
               </div>
             </div>
